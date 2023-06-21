@@ -18,14 +18,16 @@ module money_market::ipx_money_market_sdk_interface {
   entry public fun accrue<T>(
     money_market_storage: &mut MoneyMarketStorage, 
     interest_rate_model_storage: &InterestRateModelStorage, 
-    clock_object: &Clock
+    clock_object: &Clock,
+    _ctx: &mut TxContext
   ) {
     money_market::accrue<T>(money_market_storage, interest_rate_model_storage, clock_object);    
   }
 
   entry public fun accrue_suid(
     money_market_storage: &mut MoneyMarketStorage, 
-    clock_object: &Clock
+    clock_object: &Clock,
+    _ctx: &mut TxContext
   ) {
     money_market::accrue_suid(money_market_storage, clock_object);
   }

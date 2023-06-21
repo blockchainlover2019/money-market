@@ -6,16 +6,19 @@ version = 0
 dependencies = [
   { name = "IPX" },
   { name = "Library" },
+  { name = "MoveStdlib" },
+  { name = "Oracle" },
   { name = "Sui" },
   { name = "SuiDollar" },
 ]
 
 [[move.package]]
 name = "IPX"
-source = { local = "../ipx" }
+source = { local = "dependencies/ipx" }
 
 dependencies = [
   { name = "Library" },
+  { name = "MoveStdlib" },
   { name = "Sui" },
 ]
 
@@ -24,12 +27,34 @@ name = "Library"
 source = { local = "../library" }
 
 dependencies = [
+  { name = "MoveStdlib" },
   { name = "Sui" },
 ]
 
 [[move.package]]
 name = "MoveStdlib"
 source = { git = "https://github.com/MystenLabs/sui.git", rev = "testnet", subdir = "crates/sui-framework/packages/move-stdlib" }
+
+[[move.package]]
+name = "Oracle"
+source = { local = "../oracle" }
+
+dependencies = [
+  { name = "MoveStdlib" },
+  { name = "Pyth" },
+  { name = "Sui" },
+  { name = "SwitchboardStdLib" },
+  { name = "Wormhole" },
+]
+
+[[move.package]]
+name = "Pyth"
+source = { local = "../oracle/dependencies/pyth" }
+
+dependencies = [
+  { name = "Sui" },
+  { name = "Wormhole" },
+]
 
 [[move.package]]
 name = "Sui"
@@ -45,5 +70,23 @@ source = { local = "../sui-dollar" }
 
 dependencies = [
   { name = "Library" },
+  { name = "MoveStdlib" },
+  { name = "Sui" },
+]
+
+[[move.package]]
+name = "SwitchboardStdLib"
+source = { git = "https://github.com/switchboard-xyz/sbv2-sui.git", rev = "main", subdir = "move/testnet/switchboard_std/" }
+
+dependencies = [
+  { name = "MoveStdlib" },
+  { name = "Sui" },
+]
+
+[[move.package]]
+name = "Wormhole"
+source = { local = "../oracle/dependencies/wormhole" }
+
+dependencies = [
   { name = "Sui" },
 ]
